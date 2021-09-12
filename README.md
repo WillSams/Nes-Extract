@@ -10,6 +10,14 @@ Features:
 * Detect correct input file ( extract only if files have NES/FC Header).
 * Create separate files for PRG & CHR or rewrite it if already exist..
 
+## Install
+
+```bash
+make && make install
+```
+
+On Debian-based systems, you'll need to do `make install` with `sudo`.
+
 ## Usage
 
 ```bash
