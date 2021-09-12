@@ -1,18 +1,21 @@
+#!/bin/sh
+
 CC = gcc
 CFLAGS = -W -Wall -g
-LDFLAGS = 
- 
-SRC = $(wildcard *.c)
-OBJS = $(SRC:.c=.o)
-AOUT = NesExtract
- 
-all : $(AOUT) 
- 
-NesExtract : $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $^
-%.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
-clean :
-	@rm *.o
-cleaner : clean
-	@rm $(AOUT)
+
+BIN	= nesextract
+
+SS=$(wildcard *.c)
+OBJS=$(SS:.s=.o)
+
+all: $(BIN)
+
+clean:
+	rm -f $(BIN)
+	rm -f $(shell find . -name '*.o')
+
+$(BIN): $(OBJS)
+	$(CC) $(CFLAGS) $< -o $@
+
+install: 
+	bash -c 'cp $(BIN) /usr/bin'
